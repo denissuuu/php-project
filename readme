@@ -1,0 +1,196 @@
+Ce projet est une application Laravel simple qui permet de gérer une bibliothèque de livres avec des catégories.
+L’objectif est de montrer une bonne compréhension de Laravel, de l’architecture MVC, des bases de données relationnelles et des bonnes pratiques générales.
+
+Le projet reste volontairement simple, mais propre et fonctionnel.
+
+STACK UTILISÉE
+
+PHP avec Laravel
+
+SQLite comme base de données
+
+Blade pour les vues
+
+Eloquent ORM
+
+CSS personnalisé
+
+Aucune dépendance front-end lourde n’est utilisée.
+
+INSTALLATION ET LANCEMENT DU PROJET
+
+Cloner le projet
+
+git clone <url-du-repo>
+cd php-project
+
+Installer les dépendances PHP
+
+composer install
+
+Configuration Laravel
+
+Si besoin, tu peux copier le fichier .env :
+
+cp .env.example .env
+
+Générer la clé de l’application :
+
+php artisan key:generate
+
+Base de données
+
+Le projet utilise SQLite, donc aucun serveur MySQL n’est nécessaire.
+
+Le fichier de base de données se trouve ici :
+
+database/database.sqlite
+
+Si les tables ne sont pas encore créées :
+
+php artisan migrate
+php artisan db:seed
+
+Lancer le serveur
+
+php artisan serve
+
+et apres tu ouvre dans le navigateur :
+
+http://127.0.0.1:8000
+
+FONCTIONNALITÉS
+
+CRUD complet sur les livres
+
+Gestion des catégories
+
+Relation Book -> Category
+
+Interface sombre personnalisée
+
+Validation serveur
+
+Protection CSRF
+
+Affichage sécurisé via Blade
+
+ARCHITECTURE DU PROJET (MVC)
+
+Modèles :
+
+app/Models/Book.php
+app/Models/Category.php
+
+Contrôleur :
+
+app/Http/Controllers/BookController.php
+
+Vues :
+
+resources/views/layouts/app.blade.php
+resources/views/home.blade.php
+
+resources/views/books/
+
+index.blade.php
+
+create.blade.php
+
+edit.blade.php
+
+show.blade.php
+
+Styles :
+
+public/css/app.css
+
+BASE DE DONNÉES ET ELOQUENT
+
+Chaque livre appartient à une catégorie.
+La relation est gérée avec Eloquent :
+
+Book belongsTo Category
+
+Category hasMany Books
+
+Aucune requête SQL brute n’est utilisée.
+
+ LA BASE DE DONNÉES AVEC TINKER
+
+Laravel fournit un outil appelé Tinker qui permet d’interagir directement avec la base de données.
+
+Lancer Tinker :
+
+php artisan tinker
+
+Voir toutes les catégories :
+
+App\Models\Category::all();
+
+Voir tous les livres :
+
+App\Models\Book::all();
+
+Voir les livres avec leur catégorie :
+
+App\Models\Book::with('category')->get();
+
+Quitter Tinker :
+
+exit
+
+Tinker est très pratique pour vérifier rapidement le contenu de la base.
+
+VOIR LA BASE DE DONNÉES GRAPHIQUEMENT
+
+La base SQLite est un simple fichier :
+
+database/database.sqlite
+
+Il est possible de l’ouvrir avec un outil comme “DB Browser for SQLite” pour visualiser les tables et les données.
+
+SÉCURITÉ
+
+Protection CSRF sur tous les formulaires
+
+Validation serveur avec Laravel
+
+Protection XSS grâce à Blade
+
+ORM Eloquent pour éviter les injections SQL
+
+INTERFACE UTILISATEUR
+
+Thème sombre
+
+Boutons rouges
+
+Cartes, tables et formulaires cohérents
+
+Navigation simple : Home, Books, Add book
+
+CSS séparé du Blade pour une meilleure lisibilité
+
+POURQUOI SQLITE
+
+Aucun serveur à installer, cest léger et rapide
+
+- Suffisant pour un projet académique
+- Totalement intégré à Laravel
+
+CONCLUSION
+
+Ce projet respecte :
+
+L’architecture MVC
+
+Les bonnes pratiques Laravel
+
+La sécurité de base
+
+L’utilisation d’une base de données relationnelle
+
+Un code clair et maintenable
+
+Le projet est volontairement complet, et répond aux exigences attendues pour un projet Laravel
