@@ -8,6 +8,7 @@
 <body>
     <header style="padding:16px; border-bottom:1px solid #ddd;">
         <nav style="max-width:900px; margin:0 auto; display:flex; gap:12px;">
+            <a href="{{ url('/') }}">Home</a>
             <a href="{{ route('books.index') }}">Books</a>
             <a href="{{ route('books.create') }}">Add book</a>
         </nav>
