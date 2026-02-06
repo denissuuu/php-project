@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
     $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
     $table->string('title');
     $table->string('author');
     $table->unsignedSmallInteger('year')->nullable();
@@ -20,7 +22,6 @@ return new class extends Migration
     $table->foreignId('category_id')->constrained()->cascadeOnDelete();
     $table->timestamps();
 });
-
     }
 
     /**

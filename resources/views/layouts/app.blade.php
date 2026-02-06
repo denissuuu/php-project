@@ -1,38 +1,53 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'php-project')</title>
+
+    <title>MyBooks</title>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-
 <body>
-<header>
-    <div class="container">
-        <div class="nav">
-            <div class="brand">
-                <div class="logo"></div>
-                <a href="{{ url('/') }}">php-project</a>
-            </div>
 
-            <div class="navlinks">
-                <a class="btn" href="{{ url('/') }}">Home</a>
-                <a class="btn" href="{{ route('books.index') }}">Books</a>
-                <a class="btn btn-primary" href="{{ route('books.create') }}">Add book</a>
-            </div>
+<header>
+    <div class="container nav">
+        <div class="brand">
+            <div class="logo"></div>
+            <span>MyBooks</span>
+        </div>
+
+        <div class="navlinks">
+            @auth
+                <!-- Nom du user connecté -->
+                <span class="hint">
+                    {{ auth()->user()->name }}
+                </span>
+
+                <a href="{{ route('books.index') }}" class="btn">
+                    Books
+                </a>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">
+                        Logout
+                    </button>
+                </form>
+            @endauth
+
+            @guest
+                <!-- Rien ici volontairement -->
+            @endguest
         </div>
     </div>
 </header>
 
 <main>
     <div class="container">
-        @if (session('success'))
-            <div class="flash">{{ session('success') }}</div>
-        @endif
-
         @yield('content')
     </div>
 </main>
+
 </body>
 </html>

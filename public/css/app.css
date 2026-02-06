@@ -266,3 +266,31 @@ option{
         justify-content:flex-start
     }
 }
+/* --- Auth pages tweaks --- */
+.auth-card{
+    max-width:560px;
+    margin:28px auto;
+}
+
+.auth-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:14px;
+}
+
+.check{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--muted);
+    font-size:14px;
+    user-select:none;
+}
+
+.check input[type="checkbox"]{
+    width:auto;
+    accent-color: var(--r1);
+    transform: translateY(1px);
+}
