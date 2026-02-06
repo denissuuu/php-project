@@ -37,7 +37,7 @@
             </div>
 
             <p style="margin-top:14px;">
-                Tip: use the navigation bar to move around.
+                Tip: Made by a Yone main.
             </p>
         </div>
     </div>

@@ -3,52 +3,92 @@
 @section('title', 'Edit book')
 
 @section('content')
-    <h1>Edit book</h1>
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <h1 style="margin:0;">Edit book</h1>
+                <p style="margin:6px 0 0;">
+                    Update: <span style="color: rgba(242,242,242,0.9);">{{ $book->title }}</span>
+                </p>
+            </div>
 
-    @if ($errors->any())
-        <div style="padding:12px; background:#ffe8e8; border:1px solid #e3a6a6; margin-bottom:16px;">
-            <strong>Fix the errors:</strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('books.update', $book) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div style="margin-bottom:12px;">
-            <label>Title</label><br>
-            <input type="text" name="title" value="{{ old('title', $book->title) }}" required>
+            <a class="btn" href="{{ route('books.show', $book) }}">Back</a>
         </div>
 
-        <div style="margin-bottom:12px;">
-            <label>Author</label><br>
-            <input type="text" name="author" value="{{ old('author', $book->author) }}" required>
-        </div>
+        <div class="card-body">
+            @if ($errors->any())
+                <div class="error">
+                    <strong>Fix the errors:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-        <div style="margin-bottom:12px;">
-            <label>Category</label><br>
-            <select name="category_id" required>
-                @foreach ($categories as $cat)
-                    <option value="{{ $cat->id }}" @selected(old('category_id', $book->category_id) == $cat->id)>{{ $cat->name }}</option>
-                @endforeach
-            </select>
-        </div>
+            <form action="{{ route('books.update', $book) }}" method="POST">
+                @csrf
+                @method('PUT')
 
-        <div style="margin-bottom:12px;">
-            <label>Year</label><br>
-            <input type="number" name="year" min="0" max="2100" value="{{ old('year', $book->year) }}">
-        </div>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="title">Title</label>
+                        <input
+                            id="title"
+                            type="text"
+                            name="title"
+                            value="{{ old('title', $book->title) }}"
+                            required
+                        >
+                    </div>
 
-        <div style="margin-bottom:12px;">
-            <label>ISBN</label><br>
-            <input type="text" name="isbn" value="{{ old('isbn', $book->isbn) }}">
-        </div>
+                    <div class="field">
+                        <label for="author">Author</label>
+                        <input
+                            id="author"
+                            type="text"
+                            name="author"
+                            value="{{ old('author', $book->author) }}"
+                            required
+                        >
+                    </div>
 
-        <button type="submit">Save</button>
-    </form>
-@endsection
+                    <div class="field">
+                        <label for="category_id">Category</label>
+                        <select id="category_id" name="category_id" required>
+                            @foreach ($categories as $cat)
+                                <option value="{{ $cat->id }}" @selected(old('category_id', $book->category_id) == $cat->id)>
+                                    {{ $cat->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="year">Year</label>
+                        <input
+                            id="year"
+                            type="number"
+                            name="year"
+                            min="0"
+                            max="2100"
+                            value="{{ old('year', $book->year) }}"
+                        >
+                    </div>
+
+                    <div class="field" style="grid-column: 1 / -1;">
+                        <label for="isbn">ISBN</label>
+                        <input
+                            id="isbn"
+                            type="text"
+                            name="isbn"
+                            value="{{ old('isbn', $book->isbn) }}"
+                            placeholder="Optional"
+                        >
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <a class="btn" href="{{ route('books.show', $book) }}">Cancel</a>
+                    <button class="btn btn-primary" type="submit">Save</button>
