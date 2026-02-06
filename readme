@@ -179,6 +179,17 @@ Aucun serveur à installer, cest léger et rapide
 - Suffisant pour un projet académique
 - Totalement intégré à Laravel
 
+Il n’existe pas de connexion administrateur dans ce projet,
+car l’objectif est de gérer uniquement des comptes utilisateurs standards. 
+Chaque utilisateur dispose de son propre espace et de ses propres données, sans hiérarchie de rôles.
+
+Aucune connexion administrateur n’a été mise en place afin de limiter 
+les privilèges et réduire les risques de sécurité. 
+Le projet applique le principe du moindre privilège, où chaque utilisateur n’accède qu’à ses propres ressources.
+
+L’absence de connexion administrateur est un choix volontaire. Le système est conçu pour fonctionner sans rôle privilégié,
+ chaque utilisateur étant responsable uniquement de ses propres données.
+
 CONCLUSION
 
 Ce projet respecte :
